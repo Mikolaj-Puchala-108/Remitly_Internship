@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Studentów</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista Studentów</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.email}"></td>
+    </tr>
+    </tbody>
+</table>
+<!-- Formularz do wyszukiwania studenta po ID -->
+<h2>Wyszukaj Studenta po ID</h2>
+<form th:action="@{/students/search}" method="get">
+    <label for="id">Wpisz ID:</label>
+    <input type="number" id="id" name="id" required>
+    <button type="submit">Szukaj</button>
+</form>
+<div th:if="${studentById != null}">
+    <h2>Wynik wyszukiwania:</h2>
+    <p><strong>ID:</strong> <span th:text="${studentById.id}"></span></p>
+    <p><strong>Imię:</strong> <span th:text="${studentById.firstName}"></span></p>
+    <p><strong>Nazwisko:</strong> <span th:text="${studentById.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${studentById.email}"></span></p>
+</div>
+
+
+
+
+<button onclick="window.location.href='/menu'">Powrót do menu</button>
+</body>
+</html>

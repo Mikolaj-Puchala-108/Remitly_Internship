@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj Studenta</title>
+</head>
+<body>
+<h1>Dodaj Studenta</h1>
+
+<form action="#" th:action="@{/form}" th:object="${student}" method="post">
+    <label for="firstName">Imię:</label>
+    <input type="text" id="firstName" th:field="*{firstName}">
+    <span style="color: red;" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Błąd</span>
+    <br>
+
+    <label for="lastName">Nazwisko:</label>
+    <input type="text" id="lastName" th:field="*{lastName}">
+    <span style="color: red;" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Błąd</span>
+    <br>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}">
+    <span style="color: red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Błąd</span>
+    <br>
+
+    <button type="submit">Zapisz</button>
+</form>
+<button onclick="window.location.href='/menu'">Powrót do menu</button>
+
+
+</body>
+</html>
