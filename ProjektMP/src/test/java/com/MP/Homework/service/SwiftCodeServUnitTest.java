@@ -5,6 +5,7 @@ import com.MP.Homework.Exception.ISOCodeNotFound;
 import com.MP.Homework.Exception.SwiftCodeAlreadyExists;
 import com.MP.Homework.Exception.SwiftCodeNotFound;
 import com.MP.Homework.data.SwiftCreate;
+import com.MP.Homework.data.SwiftHQTest;
 import com.MP.Homework.entity.SwiftCode;
 import com.MP.Homework.repo.SwiftCodeRepo;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +46,7 @@ public class SwiftCodeServUnitTest {
         Object result = service.getDetails("AAAABBCCXXX");
 
         assertNotNull(result);
-        assertTrue(result instanceof com.MP.Homework.data.SwiftHQ);
+        assertTrue(result instanceof SwiftHQTest);
         System.out.println("HQ flag in sampleCode: " + sampleCode.isHeadquarter());
 
     }

@@ -13,7 +13,7 @@ public class SwiftBranch {
     private String address;
     private String bankName;
     private String countryISO2;
-    private boolean isHeadquarter;
+    protected boolean isHeadquarter;
     private String swiftCode;
 
 
