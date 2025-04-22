@@ -4,7 +4,6 @@ import com.MP.Homework.Exception.ISOCodeNotFound;
 import com.MP.Homework.Exception.SwiftCodeAlreadyExists;
 import com.MP.Homework.Exception.SwiftCodeNotFound;
 import com.MP.Homework.data.SwiftCreate;
-import com.MP.Homework.entity.SwiftCode;
 import com.MP.Homework.service.SwiftCodeServ;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -13,16 +12,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-
+/*
+ * REST API Controller dla operacji na kodach SWIFT.
+ * Obsługuje żądania związane z pobieraniem, tworzeniem i usuwaniem kodów SWIFT.
+ */
 @RestController
 @RequestMapping("/v1/swift-codes")
 public class SwiftCodeRESTController {
     private final SwiftCodeServ service;
 
+    /*
+     * Konstruktor z wstrzykiwaniem serwisu.
+     *
+     * @param service serwis obsługujący logikę biznesową
+     */
     public SwiftCodeRESTController(SwiftCodeServ service) {
         this.service = service;
     }
 
+    /*
+     * Endpoint GET /v1/swift-codes/{swiftCode}
+     * Pobiera szczegóły centrali lub oddziału na podstawie kodu SWIFT.
+     *
+     * @param swiftCode kod SWIFT
+     * @return szczegóły w formacie {@link com.MP.Homework.data.SwiftHQ} lub {@link com.MP.Homework.data.SwiftBranchSolo}
+     */
     @GetMapping("/{swiftCode}")
     public ResponseEntity<?> getSwiftDetails(@PathVariable String swiftCode) {
         try {
@@ -35,7 +49,13 @@ public class SwiftCodeRESTController {
         }
     }
 
-
+    /*
+     * Endpoint GET /v1/swift-codes/country/{countryISO2}
+     * Pobiera wszystkie banki danego kraju według kodu ISO2.
+     *
+     * @param countryISO2 dwuliterowy kod kraju
+     * @return dane w formacie {@link com.MP.Homework.data.SwiftCountry}
+     */
     @GetMapping("/country/{countryISO2}")
     public ResponseEntity<?> getISODetails(@PathVariable String countryISO2){
         try {
@@ -48,6 +68,13 @@ public class SwiftCodeRESTController {
         }
     }
 
+    /*
+     * Endpoint POST /v1/swift-codes
+     * Dodaje nowy kod SWIFT do bazy danych.
+     *
+     * @param create dane wejściowe walidowane adnotacjami {@link jakarta.validation.Valid}
+     * @return komunikat o powodzeniu
+     */
     @PostMapping
     public ResponseEntity<?> addSwift(@RequestBody @Valid SwiftCreate create){
         try{
@@ -61,6 +88,13 @@ public class SwiftCodeRESTController {
     }
 
 
+    /*
+     * Endpoint DELETE /v1/swift-codes/{swiftCode}
+     * Usuwa kod SWIFT z bazy danych.
+     *
+     * @param swiftCode kod do usunięcia
+     * @return komunikat o usunięciu
+     */
     @DeleteMapping("/{swiftCode}")
     public ResponseEntity<?> deleteSwift(@PathVariable String swiftCode){
         try{

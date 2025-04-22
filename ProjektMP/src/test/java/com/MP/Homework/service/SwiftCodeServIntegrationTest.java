@@ -1,7 +1,6 @@
 package com.MP.Homework.service;
 
 import com.MP.Homework.data.SwiftCreate;
-import com.MP.Homework.entity.SwiftCode;
 import com.MP.Homework.repo.SwiftCodeRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
