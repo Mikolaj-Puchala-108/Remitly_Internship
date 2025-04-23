@@ -69,7 +69,7 @@ DELETE /v1/swift-codes/{swiftCode}
 
    bash
    
-       ./mvnw test
+       docker compose run --rm test-runner
 
 ## Technologies Used in the Project
 
