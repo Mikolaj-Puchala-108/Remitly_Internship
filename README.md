@@ -8,6 +8,7 @@ A Spring Boot-based application that allows managing SWIFT codes for banks and t
 - [System Requirements](#system-requirements)
 - [Installation and Setup](#installation-and-setup)
 - [REST API Structure](#rest-api-structure)
+- [Testing](#testing)
 - [Technologies Used](#technologies-used)
 - [Author](#author)
 
@@ -64,6 +65,11 @@ POST /v1/swift-codes
 
 DELETE /v1/swift-codes/{swiftCode}
    Deletes a record from the database.
+## Testing
+
+   bash
+   
+       ./mvnw test
 
 ## Technologies Used in the Project
 
