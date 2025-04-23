@@ -48,7 +48,7 @@ public class SwiftCreate {
      * SWIFT code.
      * Must be exactly 11 characters, consisting of uppercase letters and/or numbers.
      */
-    @Pattern(regexp = "^[A-Z0-9]{11}$", message = "SWIFT should be 11 characters long")
+    @Pattern(regexp = "^[A-Z0-9]{11}$", message = "SWIFT should be 11 characters long and should be uppercase")
     private String swiftCode;
 
 // Getters and setters
