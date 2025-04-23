@@ -45,7 +45,7 @@ public class ExceptionControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalid)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.swiftCode").value("SWIFT should be 11 characters long"));
+                .andExpect(jsonPath("$.swiftCode").value("SWIFT should be 11 characters long and should be uppercase"));
     }
 
     @Test
