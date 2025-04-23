@@ -36,9 +36,10 @@ To run the application, you will need:
 1. **Clone the repository:**
 bash
    git clone https://github.com/Mikolaj-Puchala-108/Remitly_Internship.git
+   
    cd Remitly_Internship\ProjektMP
 
-2. **Build the application:**
+3. **Build the application:**
 bash
    docker-compose up --build
 
@@ -73,4 +74,5 @@ DELETE /v1/swift-codes/{swiftCode}
 ## Author
 
 Mikołaj Puchała
+
 Project for recruitment purposes and to improve backend and containerization technologies.
