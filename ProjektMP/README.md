@@ -39,7 +39,7 @@ To run the application, you will need:
       
          git clone https://github.com/Mikolaj-Puchala-108/Remitly_Internship.git
       
-      cd Remitly_Internship\ProjektMP
+         cd Remitly_Internship\ProjektMP
 
 2. **Build the application:**
    
