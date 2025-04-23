@@ -35,19 +35,19 @@ To run the application, you will need:
 
 1. **Clone the repository:**
    
-bash
-
-   git clone https://github.com/Mikolaj-Puchala-108/Remitly_Internship.git
+   bash
    
-   cd Remitly_Internship\ProjektMP
+      git clone https://github.com/Mikolaj-Puchala-108/Remitly_Internship.git
+      
+      cd Remitly_Internship\ProjektMP
 
 2. **Build the application:**
    
-bash
-
-   docker-compose up --build
-
-The application will be available at:
+   bash
+   
+      docker-compose up --build
+   
+   The application will be available at:
 
    http://localhost:8080/[...]
 
