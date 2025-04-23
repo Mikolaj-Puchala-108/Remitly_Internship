@@ -13,20 +13,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * ExceptionController przechwytuje i obsługuje wyjątki w całej aplikacji REST.
- * Dzięki adnotacji @RestControllerAdvice działa globalnie dla wszystkich kontrolerów.
- * Każdy typ błędu mapowany jest na odpowiedni kod HTTP oraz wiadomość w formacie JSON.
+ * ExceptionController intercepts and handles exceptions throughout the REST application.
+ * With the @RestControllerAdvice annotation, it works globally for all controllers.
+ * Each type of error is mapped to the appropriate HTTP status code and a JSON-formatted message.
  */
 @RestControllerAdvice
 public class ExceptionController {
 
 
     /*
-     * Obsługa błędów walidacji danych wejściowych (np. @Valid).
-     * Zwraca mapę z nazwą pola i komunikatem błędu.
+     * Handles input validation errors (e.g., from @Valid).
+     * Returns a map with field names and corresponding error messages.
      *
-     * @param ex wyjątek walidacji
-     * @return odpowiedź 400 z mapą błędów
+     * @param ex validation exception
+     * @return HTTP 400 response with error map
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex) {
@@ -40,11 +40,11 @@ public class ExceptionController {
     }
 
     /*
-     * Obsługa wyjątku SwiftCodeNotFound.
-     * Zwraca status 404 z komunikatem.
+     * Handles SwiftCodeNotFound exception.
+     * Returns status 404 with an error message.
      *
-     * @param ex wyjątek informujący o braku kodu SWIFT
-     * @return odpowiedź 404 z wiadomością
+     * @param ex exception indicating missing SWIFT code
+     * @return HTTP 404 response with message
      */
     @ExceptionHandler(SwiftCodeNotFound.class)
     public ResponseEntity<Map<String, String>> handleSwiftCodeNotFound(SwiftCodeNotFound ex) {
@@ -52,11 +52,11 @@ public class ExceptionController {
     }
 
     /*
-     * Obsługa wyjątku ISOCodeNotFound.
-     * Zwraca status 404 z komunikatem.
+     * Handles ISOCodeNotFound exception.
+     * Returns status 404 with an error message.
      *
-     * @param ex wyjątek informujący o braku danych dla kodu ISO
-     * @return odpowiedź 404 z wiadomością
+     * @param ex exception indicating missing data for ISO code
+     * @return HTTP 404 response with message
      */
     @ExceptionHandler(ISOCodeNotFound.class)
     public ResponseEntity<Map<String, String>> handleISOCodeNotFound(ISOCodeNotFound ex) {
@@ -64,11 +64,11 @@ public class ExceptionController {
     }
 
     /*
-     * Obsługa wyjątku SwiftCodeAlreadyExists.
-     * Zwraca status 409, jeśli próbujemy dodać już istniejący kod.
+     * Handles SwiftCodeAlreadyExists exception.
+     * Returns status 409 if a duplicate SWIFT code is being added.
      *
-     * @param ex wyjątek informujący o konflikcie (duplikacie)
-     * @return odpowiedź 409 z wiadomością
+     * @param ex exception indicating conflict (duplicate)
+     * @return HTTP 409 response with message
      */
     @ExceptionHandler(SwiftCodeAlreadyExists.class)
     public ResponseEntity<Map<String, String>> handleSwiftCodeAlreadyExists(SwiftCodeAlreadyExists ex) {
@@ -77,11 +77,11 @@ public class ExceptionController {
 
 
     /*
-     * Pomocnicza metoda do tworzenia ustandaryzowanej odpowiedzi błędu.
+     * Helper method for creating a standardized error response.
      *
-     * @param message komunikat błędu
-     * @param statusCode kod HTTP, np. 404 lub 409
-     * @return ResponseEntity z mapą {"message": "..."}
+     * @param message error message
+     * @param statusCode HTTP status code, e.g., 404 or 409
+     * @return ResponseEntity with a map {"message": "..."}
      */
     private ResponseEntity<Map<String, String>> buildErrorResponse(String message, int statusCode) {
         Map<String, String> error = new HashMap<>();

@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 /*
- * Encja reprezentująca oddział bankowy w tabeli {banks}.
+ * Entity representing a bank branch in the {banks} table.
  *
- * Zawiera dane identyfikujące oddział, takie jak kod SWIFT, nazwa banku,
- * adres, miasto, kraj, strefa czasowa oraz informacja, czy to centrala.
+ * Contains identifying data such as SWIFT code, bank name,
+ * address, city, country, time zone, and a flag indicating whether it is the head office.
  *
- * Zastosowano adnotacje JPA do mapowania pól na odpowiednie kolumny w bazie danych,
- * oraz adnotacje Jackson do kontrolowania serializacji JSON.
+ * JPA annotations are used for mapping fields to the corresponding database columns,
+ * and Jackson annotations for controlling JSON serialization.
  */
 
 @Entity
@@ -18,14 +18,14 @@ import jakarta.persistence.*;
 public class SwiftCode {
 
     /*
-     * Kod kraju w formacie ISO 3166-1 alpha-2.
+     * Country code in ISO 3166-1 alpha-2 format.
      * Mapped to column "COUNTRY ISO2 CODE".
      */
     @Column(name = "`COUNTRY ISO2 CODE`")
     private String countryISO2;
 
     /*
-     * Kod SWIFT oddziału – klucz główny.
+     * SWIFT code of the branch – primary key.
      * Mapped to column "SWIFT CODE".
      */
     @Id
@@ -33,57 +33,57 @@ public class SwiftCode {
     private String swiftCode;
 
     /*
-     * Nazwa banku.
+     * Bank name.
      */
     private String name;
 
     /*
-     * Adres oddziału.
+     * Branch address.
      */
     private String address;
 
     /*
-     * Nazwa miasta.
+     * City name.
      * Mapped to column "TOWN NAME".
      */
     @Column(name = "`TOWN NAME`")
     private String townName;
 
     /*
-     * Pełna nazwa kraju.
+     * Full country name.
      * Mapped to column "COUNTRY NAME".
      */
     @Column(name = "`COUNTRY NAME`")
     private String countryName;
 
     /*
-     * Strefa czasowa banku.
+     * Bank's time zone.
      * Mapped to column "TIME ZONE".
      */
     @Column(name = "`TIME ZONE`")
     private String timeZone;
 
     /*
-     * Flaga określająca, czy oddział jest centralą banku.
+     * Flag indicating whether the branch is the bank’s headquarters.
      */
     private boolean isHQ;
 
     /*
-     * Konstruktor domyślny wymagany przez JPA.
+     * Default constructor required by JPA.
      */
     public SwiftCode() {}
 
 
     /*
-     * Konstruktor z wszystkimi polami poza isHQ.
+     * Constructor with all fields except isHQ.
      *
-     * @param countryISO2 Kod kraju
-     * @param SwiftCode Kod SWIFT
-     * @param Name Nazwa banku
-     * @param Address Adres
-     * @param TownName Miasto
-     * @param CountryName Nazwa kraju
-     * @param TimeZone Strefa czasowa
+     * @param countryISO2 Country code
+     * @param SwiftCode SWIFT code
+     * @param Name Bank name
+     * @param Address Address
+     * @param TownName City
+     * @param CountryName Country name
+     * @param TimeZone Time zone
      */
     public SwiftCode(String countryISO2, String SwiftCode, String Name, String Address, String TownName, String CountryName, String TimeZone) {
         this.countryISO2 = countryISO2;
@@ -98,9 +98,9 @@ public class SwiftCode {
 
 
     /*
-     * Zwraca dwuliterowy kod ISO2 kraju (np. "PL", "US").
+     * Returns the two-letter ISO2 country code (e.g., "PL", "US").
      *
-     * @return kod kraju ISO2
+     * @return ISO2 country code
      */
     @JsonProperty("countryISO2")
     public String getCountryISO2() {
@@ -108,18 +108,18 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia dwuliterowy kod ISO2 kraju.
+     * Sets the two-letter ISO2 country code.
      *
-     * @param countryISO2 kod kraju ISO2
+     * @param countryISO2 ISO2 country code
      */
     public void setCountryISO2(String countryISO2) {
         this.countryISO2 = countryISO2;
     }
 
     /*
-     * Zwraca kod SWIFT (BIC) banku.
+     * Returns the bank’s SWIFT (BIC) code.
      *
-     * @return kod SWIFT
+     * @return SWIFT code
      */
     @JsonProperty("swiftCode")
     public String getSwiftCode() {
@@ -127,18 +127,18 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia kod SWIFT (BIC) banku.
+     * Sets the bank’s SWIFT (BIC) code.
      *
-     * @param swiftCode kod SWIFT
+     * @param swiftCode SWIFT code
      */
     public void setSwiftCode(String swiftCode) {
         this.swiftCode = swiftCode;
     }
 
     /*
-     * Zwraca nazwę banku.
+     * Returns the bank name.
      *
-     * @return nazwa banku
+     * @return bank name
      */
     @JsonProperty("bankName")
     public String getName() {
@@ -146,18 +146,18 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia nazwę banku.
+     * Sets the bank name.
      *
-     * @param name nazwa banku
+     * @param name bank name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /*
-     * Zwraca adres banku.
+     * Returns the bank address.
      *
-     * @return adres
+     * @return address
      */
     @JsonProperty("address")
     public String getAddress() {
@@ -165,9 +165,9 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia adres banku.
+     * Sets the bank address.
      *
-     * @param address adres
+     * @param address address
      */
     public void setAddress(String address) {
         this.address = address;
@@ -175,9 +175,9 @@ public class SwiftCode {
 
 
     /*
-     * Zwraca nazwę miasta, w którym znajduje się bank.
+     * Returns the city where the bank is located.
      *
-     * @return nazwa miasta
+     * @return city name
      */
     @JsonProperty("townName")
     public String getTownName() {
@@ -185,18 +185,18 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia nazwę miasta banku.
+     * Sets the city name.
      *
-     * @param townName nazwa miasta
+     * @param townName city name
      */
     public void setTownName(String townName) {
         this.townName = townName;
     }
 
     /*
-     * Zwraca pełną nazwę kraju.
+     * Returns the full country name.
      *
-     * @return nazwa kraju
+     * @return country name
      */
     @JsonProperty("countryName")
     public String getCountryName() {
@@ -204,18 +204,18 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia pełną nazwę kraju.
+     * Sets the full country name.
      *
-     * @param countryName nazwa kraju
+     * @param countryName country name
      */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
     /*
-     * Zwraca strefę czasową banku (np. "Europe/Warsaw").
+     * Returns the bank’s time zone (e.g., "Europe/Warsaw").
      *
-     * @return strefa czasowa
+     * @return time zone
      */
     @JsonProperty("timeZone")
     public String getTimeZone() {
@@ -223,37 +223,37 @@ public class SwiftCode {
     }
 
     /*
-     * Ustawia strefę czasową banku.
+     * Sets the bank’s time zone.
      *
-     * @param timeZone strefa czasowa
+     * @param timeZone time zone
      */
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
     }
 
     /*
-     * Sprawdza, czy dany oddział to centrala (HQ).
+     * Checks whether the branch is the bank’s headquarters.
      *
-     * @return true jeśli to centrala
+     * @return true if it is the headquarters
      */
     public boolean isHQ() {
         return isHQ;
     }
 
     /*
-     * Ustawia, czy dany oddział jest centralą.
+     * Sets whether the branch is the headquarters.
      *
-     * @param HQ true jeśli centrala
+     * @param HQ true if headquarters
      */
     public void setHQ(boolean HQ) {
         isHQ = HQ;
     }
 
     /*
-     * Zwraca informację, czy oddział jest centralą banku,
-     * na podstawie końcówki kodu SWIFT ("XXX").
+     * Returns whether the branch is the bank’s headquarters,
+     * based on the SWIFT code ending ("XXX").
      *
-     * @return {true} jeśli kod SWIFT kończy się na "XXX"
+     * @return {true} if the SWIFT code ends with "XXX"
      */
     @JsonProperty("isHeadquarter")
     public boolean isHeadquarter() {

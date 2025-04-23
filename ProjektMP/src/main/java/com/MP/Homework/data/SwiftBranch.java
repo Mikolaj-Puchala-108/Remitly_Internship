@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /*
- * Reprezentuje oddział banku w systemie SWIFT.
+ * Represents a bank branch in the SWIFT system.
  *
- * Klasa ta zawiera podstawowe informacje o oddziale bankowym, takie jak adres,
- * nazwa banku, kod kraju, informacja czy jest to centrala oraz kod SWIFT.
+ * This class contains basic information about a bank branch, such as address,
+ * bank name, country code, whether it is a head office and SWIFT code.
  *
- * Adnotacja {@JsonPropertyOrder} określa kolejność serializacji pól
- * do formatu JSON.
+ * The {@JsonPropertyOrder} annotation specifies the order in which fields are serialized
+ * to JSON format
  */
 @JsonPropertyOrder({
         "address",
@@ -22,53 +22,53 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class SwiftBranch {
 
     /*
-     * Adres oddziału banku.
+     * Bank branch address.
      */
     private String address;
 
     /*
-     * nazwe oddziału banku.
+     * Name of the bank branch.
      */
     private String bankName;
 
     /*
-     * Kod ISO2 banku.
+     * Bank ISO2 code.
      */
     private String countryISO2;
 
     /*
-     * określa czy bank to HQ.
+     * Determines if the bank is HQ.
      */
     protected boolean isHeadquarter;
 
     /*
-     * Kod Swift banku.
+     * Bank Swift Code.
      */
     private String swiftCode;
 
 
     /*
-     * Zwraca adres oddziału banku.
+     * Returns the bank branch address.
      *
-     * @return adres
+     * @return address
      */
     public String getAddress() {
         return address;
     }
 
     /*
-     * Ustawia adres oddziału banku.
+     * Sets the bank branch address.
      *
-     * @param address nowy adres
+     * @param address new address
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /*
-     * Zwraca nazwę banku.
+     * Returns the bank name.
      *
-     * @return nazwa banku
+     * @return bank nam
      */
     public String getBankName() {
         return bankName;
@@ -84,54 +84,53 @@ public class SwiftBranch {
     }
 
     /*
-     * Zwraca kod kraju w formacie ISO2.
+     * Sets the bank name.
      *
-     * @return kod kraju ISO2
+     * @param bankName new bank name
      */
     public String getCountryISO2() {
         return countryISO2;
     }
 
     /*
-     * Ustawia kod kraju w formacie ISO2.
+     * Sets the country code in ISO2 format.
      *
-     * @param countryISO2 kod kraju ISO2
+     * @param countryISO2 the ISO2 country code
      */
     public void setCountryISO2(String countryISO2) {
         this.countryISO2 = countryISO2;
     }
 
     /*
-     * Zwraca informację, czy oddział jest centralą banku.
+     * Returns information whether the branch is the bank's headquarters.
      *
-     * @return {@code true} jeśli to centrala, w przeciwnym razie {@code false}
+     * @return {@code true} if it is the headquarters, otherwise {@code false}
      */
     public boolean getIsHeadquarter() {
         return isHeadquarter;
     }
 
     /*
-     * Ustawia informację, czy oddział jest centralą banku.
+     * Sets whether the branch is the bank's headquarters.
      *
-     * @param headquarter {@code true} jeśli to centrala
-     */
+     * @param headquarter {@code true} if it is the headquarters     */
     public void setIsHeadquarter(boolean headquarter) {
         isHeadquarter = headquarter;
     }
 
     /*
-     * Zwraca kod SWIFT oddziału.
+     * Returns the branch's SWIFT code.
      *
-     * @return kod SWIFT
+     * @return SWIFT code
      */
     public String getSwiftCode() {
         return swiftCode;
     }
 
     /*
-     * Ustawia kod SWIFT oddziału.
+     * Sets the branch's SWIFT code.
      *
-     * @param swiftCode nowy kod SWIFT
+     * @param swiftCode new SWIFT code
      */
     public void setSwiftCode(String swiftCode) {
         this.swiftCode = swiftCode;

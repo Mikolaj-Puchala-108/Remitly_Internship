@@ -3,14 +3,14 @@ package com.MP.Homework.data;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /*
- * Reprezentuje oddział banku w systemie SWIFT jeśli jest wyświetlany solo.
+ * Represents a bank branch in the SWIFT system if displayed solo.
  *
- * Klasa ta zawiera podstawowe informacje o oddziale bankowym, takie jak adres,
- * nazwa banku, kod kraju, nazwa kraju, informacja czy jest to centrala oraz kod SWIFT.
- * Dziedziczy po SwiftBranch dodatkowo wszystko oprócz nazwy kraju.
+ * This class contains basic information about a bank branch, such as address,
+ * bank name, country code, country name, whether it is headquartered, and SWIFT code.
+ * It inherits everything from SwiftBranch except the country name.
  *
- * Adnotacja {@JsonPropertyOrder} określa kolejność serializacji pól
- * do formatu JSON.
+ * The {@JsonPropertyOrder} annotation specifies the order in which fields are serialized
+ * to JSON.
  */
 @JsonPropertyOrder({
         "address",
@@ -23,12 +23,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class SwiftBranchSolo extends SwiftBranch{
 
     /*
-     * Nazwa kraju.
+     * Country name.
      */
     private  String countryName;
 
     /*
-     * Zwraca nazwe kraju.
+     * Returns the country name.
      *
      * @return countryName
      */
@@ -37,9 +37,9 @@ public class SwiftBranchSolo extends SwiftBranch{
     }
 
     /*
-     * Ustawia nazwe kraju.
+     * Sets the country name.
      *
-     * @param countryName nowa nazwa
+     * @param countryName new name
      */
     public void setCountryName(String countryName) {
         this.countryName = countryName;

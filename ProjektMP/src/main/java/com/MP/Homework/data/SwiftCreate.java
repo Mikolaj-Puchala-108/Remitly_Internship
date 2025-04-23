@@ -2,159 +2,160 @@ package com.MP.Homework.data;
 import jakarta.validation.constraints.*;
 
 /*
- * Reprezentuje dane wejściowe wymagane do utworzenia nowego oddziału bankowego w systemie SWIFT.
+ * Represents the input data required to create a new bank branch in the SWIFT system.
  *
- * Klasa zawiera adnotacje walidacyjne z biblioteki Jakarta Bean Validation
- * (np. @NotBlank, @Pattern), które służą do weryfikacji poprawności danych przesyłanych
- * przez użytkownika np. w formularzach lub zapytaniach REST.
+ * The class contains validation annotations from the Jakarta Bean Validation library
+ * (e.g. @NotBlank, @Pattern), which are used to verify the correctness of data sent
+ * by the user, e.g. in forms or REST requests.
  */
 public class SwiftCreate {
 
     /*
-     * Adres oddziału banku.
-     * Nie może być pusty.
+     * Bank branch address.
+     * Cannot be empty
      */
     @NotBlank(message = "Address cannot be empty")
     public String address;
 
     /*
-     * Nazwa banku.
-     * Nie może być pusta.
+     * Bank name.
+     * Cannot be empty.
      */
     @NotBlank(message = "Bank name cannot be empty")
     public String bankName;
 
     /*
-     * Kod kraju w formacie ISO 3166-1 alpha-2.
-     * Musi składać się z 2 wielkich liter (np. "PL").
+     * Country code in ISO2
+     * Must be 2 uppercase letters (e.g. "PL").
      */
     @Pattern(regexp = "^[A-Z]{2}$", message = "The country code should consist of 2 capital letters")
     public String countryISO2;
 
+
     /*
-     * Pełna nazwa kraju.
-     * Nie może być pusta.
+     * Full country name.
+     * Cannot be empty.
      */
     @NotBlank(message = "Country name cannot be empty")
     public String CountryName;
 
     /*
-     * Flaga określająca, czy oddział jest centralą banku. Używana podczas tworzenia nowego banku
+     * Flag indicating whether the branch is the bank's headquarters. Used when creating a new bank
      */
     public boolean isHQ;
 
     /*
-     * Kod SWIFT.
-     * Musi mieć dokładnie 11 znaków składających się z wielkich liter i/lub cyfr.
+     * SWIFT code.
+     * Must be exactly 11 characters, consisting of uppercase letters and/or numbers.
      */
     @Pattern(regexp = "^[A-Z0-9]{11}$", message = "SWIFT should be 11 characters long")
     private String swiftCode;
 
-    // Gettery i settery
+// Getters and setters
 
     /*
-     * Zwraca adres oddziału.
+     * Returns the branch address.
      *
-     * @return adres
+     * @return address
      */
     public String getAddress() {
         return address;
     }
 
     /*
-     * Ustawia adres oddziału.
+     * Sets the branch address.
      *
-     * @param address adres oddziału
+     * @param address branch address
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /*
-     * Zwraca nazwę banku.
+     * Returns the bank name.
      *
-     * @return nazwa banku
+     * @return the bank name
      */
     public String getBankName() {
         return bankName;
     }
 
     /*
-     * Ustawia nazwę banku.
+     * Sets the bank name.
      *
-     * @param bankName nazwa banku
+     * @param bankName the bank name
      */
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
 
     /*
-     * Zwraca kod kraju w formacie ISO.
+     * Returns the country code in ISO format.
      *
-     * @return kod kraju ISO2
+     * @return the ISO2 country code
      */
     public String getCountryISO2() {
         return countryISO2;
     }
 
     /*
-     * Ustawia kod kraju w formacie ISO.
+     * Sets the country code in ISO format.
      *
-     * @param countryISO kod kraju
+     * @param countryISO country code
      */
     public void setCountryISO(String countryISO) {
         this.countryISO2 = countryISO;
     }
 
     /*
-     * Zwraca nazwę kraju.
+     * Returns the country name.
      *
-     * @return nazwa kraju
+     * @return country name
      */
     public String getCountryName() {
         return CountryName;
     }
 
     /*
-     * Ustawia nazwę kraju.
+     * Sets the country name.
      *
-     * @param countryName nazwa kraju
+     * @param countryName country name
      */
     public void setCountryName(String countryName) {
         CountryName = countryName;
     }
 
     /*
-     * Zwraca informację, czy oddział jest centralą.
+     * Returns information whether the branch is a headquarters.
      *
-     * @return {@code true} jeśli to centrala
+     * @return {@code true} if it is a headquarters
      */
     public boolean getHQ() {
         return isHQ;
     }
 
     /*
-     * Ustawia informację, czy oddział jest centralą.
+     * Sets whether the branch is a HQ.
      *
-     * @param isHQ {@code true} jeśli to centrala
+     * @param isHQ {@code true} if HQ
      */
     public void setHQ(boolean isHQ) {
         this.isHQ = isHQ;
     }
 
     /*
-     * Zwraca kod SWIFT.
+     * Returns the SWIFT code.
      *
-     * @return kod SWIFT
+     * @return the SWIFT code
      */
     public String getSwiftCode() {
         return swiftCode;
     }
 
     /*
-     * Ustawia kod SWIFT.
+     * Sets the SWIFT code.
      *
-     * @param swiftCode kod SWIFT
+     * @param swiftCode SWIFT code
      */
     public void setSwiftCode(String swiftCode) {
         this.swiftCode = swiftCode;

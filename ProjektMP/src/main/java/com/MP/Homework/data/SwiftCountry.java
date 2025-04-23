@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /*
- * Reprezentuje kraj w systemie SWIFT na podstwie kodu ISO.
+ * Represents a country in the SWIFT system based on its ISO code.
  *
- * Klasa ta zawiera podstawowe informacje o kraju, takie jak ISO2,
- * nazwa kraju oraz kody swift w tym kraju
+ * This class contains basic information about a country, such as ISO2,
+ * the country name, and the swift codes in that country
  *
- * Adnotacja {@JsonPropertyOrder} określa kolejność serializacji pól
- * do formatu JSON.
+ * The {@JsonPropertyOrder} annotation specifies the order in which fields are serialized
+ * to JSON..
  */
 @JsonPropertyOrder({
         "countryISO2",
@@ -22,62 +22,62 @@ import java.util.List;
 public class SwiftCountry{
 
     /*
-     * Nazwa kraju.
+     * Country name.
      */
     private String countryName;
 
     /*
-     * Kod ISO2 kraju.
+     * ISO2 country code.
      */
     private String countryISO2;
 
     /*
-     * Lista kodów swift.
+     * Swift code list
      */
     private List<SwiftBranch> swiftCodes;
 
     /*
-     * Zwraca nazwe kraju.
+     * Returns the country name.
      *
-     * @return nazwę kraju
+     * @return the country name
      */
     public String getCountryName() {
         return countryName;
     }
 
     /*
-     * Ustawia nazwę kraju.
+     * Sets the country name.
      *
-     * @param countryName nowa nazwa kraju
+     * @param countryName new country name
      */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
     /*
-     * Zwraca kod ISO2
+     * Returns ISO2 code
      *
-     * @return kod kraju ISO2
+     * @return ISO2 country code
      */
     public String getCountryISO2() {
         return countryISO2;
     }
 
     /*
-     * Ustawia kod kraju w formacie ISO2.
+     * Sets the country code in ISO2 format.
      *
-     * @param countryISO2 kod kraju ISO2
+     * @param countryISO2 the ISO2 country code
      */
     public void setCountryISO2(String countryISO2) {
         this.countryISO2 = countryISO2;
     }
 
     /*
-     * Zwraca kody swift do listy
+     * Returns swift codes to a list
      *
-     * Adnotacja {@JsonProperty} ustawia w json nazwę parametru na swiftCodes\
+     * The {@JsonProperty} annotation sets the json parameter name to swiftCodes\
      *
-     * @return liste kodów swift
+     * @return a list of swift codes
      */
     @JsonProperty("swiftCodes")
     public List<SwiftBranch> getBranches() {
@@ -85,9 +85,9 @@ public class SwiftCountry{
     }
 
     /*
-     * Ustawia kody swift z listy
+     * Sets swift codes from a list
      *
-     * @param swiftCodes element listy kodów swift
+     * @param swiftCodes swift code list item
      */
     public void setSwiftCodes(List<SwiftBranch> swiftCodes) {
         this.swiftCodes = swiftCodes;

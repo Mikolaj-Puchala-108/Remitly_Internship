@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 
 /*
- * Serwis obsługujący operacje związane z kodami SWIFT.
+ * Service handling operations related to SWIFT codes.
  *
- * Odpowiada za logikę biznesową związaną z pobieraniem, dodawaniem
- * i usuwaniem rekordów SWIFT, a także przekształcaniem danych do DTO.
+ * Responsible for business logic regarding retrieval, addition,
+ * and deletion of SWIFT records, as well as transforming data into DTOs.
  */
 @Service
 public class SwiftCodeServ {
@@ -25,9 +25,9 @@ public class SwiftCodeServ {
     private final SwiftCodeRepo repository;
 
     /*
-     * Konstruktor z wstrzykiwaniem repozytorium.
+     * Constructor with repository injection.
      *
-     * @param repository repozytorium JPA dla encji SwiftCode
+     * @param repository JPA repository for SwiftCode entity
      */
     public SwiftCodeServ(SwiftCodeRepo repository) {
 
@@ -35,20 +35,20 @@ public class SwiftCodeServ {
     }
 
     /*
-     * Pobiera listę rekordów SWIFT na podstawie kodu ISO2 kraju.
+     * Retrieves a list of SWIFT records based on the country's ISO2 code.
      *
-     * @param countryISO2 dwuliterowy kod kraju (np. "PL")
-     * @return lista obiektów {@link SwiftCode}
+     * @param countryISO2 two-letter country code (e.g., "PL")
+     * @return list of {@link SwiftCode} objects
      */
     public List<SwiftCode> getByCountry(String countryISO2) {
         return repository.findByCountryISO2(countryISO2.toUpperCase());
     }
 
     /*
-     * Zwraca listę oddziałów dla danej centrali na podstawie kodu SWIFT.
+     * Returns a list of branches for a given head office based on the SWIFT code.
      *
-     * @param headCode pełny kod SWIFT centrali
-     * @return lista oddziałów jako {@link SwiftCode}
+     * @param headCode full SWIFT code of the head office
+     * @return list of branches as {@link SwiftCode}
      */
     public List<SwiftCode> getBranches(String headCode) {
         return repository.findBySwiftCodeStartingWith(headCode.substring(0, 8))//pierwsze 8 znakow
@@ -60,12 +60,12 @@ public class SwiftCodeServ {
 
 //endpoint1
     /*
-     * Zwraca szczegóły oddziału lub centrali na podstawie kodu SWIFT.
-     * Zwraca obiekt {@link SwiftHQ} jeśli to centrala, albo {@link SwiftBranchSolo} jeśli nie.
+     * Returns details of a branch or head office based on the SWIFT code.
+     * Returns {@link SwiftHQ} if it's a head office, or {@link SwiftBranchSolo} otherwise.
      *
-     * @param swiftCode kod SWIFT
-     * @return DTO z danymi oddziału/centrali
-     * @throws SwiftCodeNotFound jeśli kod SWIFT nie istnieje
+     * @param swiftCode SWIFT code
+     * @return DTO with branch/head office data
+     * @throws SwiftCodeNotFound if the SWIFT code doesn't exist
      */
     public Object getDetails(String swiftCode) {
         Optional<SwiftCode> details = repository.findById(swiftCode);
@@ -96,7 +96,7 @@ public class SwiftCodeServ {
     }
 
     /*
-     * Maper oddziału niebędącego centralą do DTO {@link SwiftBranchSolo}.
+     * Maps a non-head office branch to {@link SwiftBranchSolo} DTO.
      */
     private SwiftBranchSolo mapToBranchB(SwiftCode code) {
         SwiftBranchSolo data = new SwiftBranchSolo();
@@ -110,7 +110,7 @@ public class SwiftCodeServ {
     }
 
     /*
-     * Maper oddziału do DTO {@link SwiftBranch}.
+     * Maps a branch to {@link SwiftBranch} DTO.
      */
     private SwiftBranch mapToBranchHQ(SwiftCode code) {
         SwiftBranch data = new SwiftBranch();
@@ -123,13 +123,13 @@ public class SwiftCodeServ {
     }
 
 //endpoint2
-    /*
-     * Pobiera wszystkie rekordy SWIFT dla danego kraju i mapuje do DTO {@link SwiftCountry}.
-     *
-     * @param countryISO2 kod ISO2 kraju
-     * @return obiekt {@link SwiftCountry} z listą banków
-     * @throws ISOCodeNotFound jeśli brak danych
-     */
+/*
+ * Retrieves all SWIFT records for a given country and maps them to {@link SwiftCountry} DTO.
+ *
+ * @param countryISO2 country ISO2 code
+ * @return {@link SwiftCountry} object with list of banks
+ * @throws ISOCodeNotFound if no data found
+ */
     public SwiftCountry getCountry(String countryISO2) {
         List<SwiftCode> codes = getByCountry(countryISO2);
 
@@ -153,11 +153,11 @@ public class SwiftCodeServ {
 
     //endpoint3
     /*
-     * Dodaje nowy kod SWIFT do bazy danych.
+     * Adds a new SWIFT code to the database.
      *
-     * @param create dane wejściowe w formacie {@link SwiftCreate}
-     * @return komunikat o sukcesie
-     * @throws SwiftCodeAlreadyExists jeśli kod już istnieje
+     * @param create input data in {@link SwiftCreate} format
+     * @return success message
+     * @throws SwiftCodeAlreadyExists if the code already exists
      */
     public String addSwift(SwiftCreate create) {
         if (repository.existsById(create.getSwiftCode())) {
@@ -183,11 +183,11 @@ public class SwiftCodeServ {
 
     //endpoint4
     /*
-     * Usuwa kod SWIFT z bazy danych.
+     * Deletes a SWIFT code from the database.
      *
-     * @param swiftCode kod SWIFT do usunięcia
-     * @return komunikat o sukcesie
-     * @throws SwiftCodeNotFound jeśli kod nie istnieje
+     * @param swiftCode SWIFT code to delete
+     * @return success message
+     * @throws SwiftCodeNotFound if the code does not exist
      */
     public String deleteSwift(String swiftCode) {
         Optional<SwiftCode> details = repository.findById(swiftCode);

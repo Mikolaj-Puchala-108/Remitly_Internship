@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.List;
 
 /*
- * Reprezentuje oddział banku w systemie SWIFT jeśli jest wyświetlany jako HQ.
+ * Represents a bank branch in the SWIFT system if displayed as HQ.
  *
- * Klasa ta zawiera podstawowe informacje o oddziale bankowym, takie jak adres,
- * nazwa banku, kod kraju, nazwa kraju, informacja czy jest to centrala, liste kodów swift oraz kod SWIFT.
- * Dziedziczy po SwiftBranch wszystko oprócz nazwy kraju oraz listy kodów swift podlegających pod HQ.
+ * This class contains basic information about a bank branch, such as address,
+ * bank name, country code, country name, whether it is head office, list of swift codes, and SWIFT code.
+ * Inherits everything from SwiftBranch except the country name and list of swift codes that are under HQ.
  *
- * Adnotacja {@JsonPropertyOrder} określa kolejność serializacji pól
- * do formatu JSON.
+ * The {@JsonPropertyOrder} annotation specifies the order in which fields are serialized
+ * to JSON
  */
 @JsonPropertyOrder({
         "address",
@@ -26,17 +26,17 @@ import java.util.List;
 public class SwiftHQ extends SwiftBranch {
 
     /*
-     * Nazwa kraju.
+     * Country name.
      */
     private String countryName;
 
     /*
-     * Lista kodów swift oddziałów podlegających pod HQ.
+     * List of swift codes of units subordinate to HQ.
      */
     private List<SwiftBranch> branches;
 
     /*
-     * Zwraca nazwe kraju.
+     * Returns the country name.
      *
      * @return countryName
      */
@@ -45,27 +45,27 @@ public class SwiftHQ extends SwiftBranch {
     }
 
     /*
-     * Ustawia nazwe kraju.
+     * Sets the country name.
      *
-     * @param countryName nowa nazwa
+     * @param countryName new name
      */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
     /*
-     * Zwraca podlegające banki z listy
+     * Returns the subordinate banks from the list
      *
-     * @return liste banków swift
+     * @return list of swift banks
      */
     public List<SwiftBranch> getBranches() {
         return branches;
     }
 
     /*
-     * Ustawia podlegające banki z listy
+     * Sets the banks subject to the list
      *
-     * @param swiftCodes element listy
+     * @param swiftCodes list item
      */
     public void setBranches(List<SwiftBranch> branches) {
         this.branches = branches;

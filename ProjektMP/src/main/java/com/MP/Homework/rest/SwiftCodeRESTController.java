@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /*
- * REST API Controller dla operacji na kodach SWIFT.
- * Obsługuje żądania związane z pobieraniem, tworzeniem i usuwaniem kodów SWIFT.
+ * REST API controller for SWIFT code operations.
+ * Supports retrieving, creating, and deleting SWIFT codes.
  */
 @RestController
 @RequestMapping("/v1/swift-codes")
@@ -22,9 +22,9 @@ public class SwiftCodeRESTController {
     private final SwiftCodeServ service;
 
     /*
-     * Konstruktor z wstrzykiwaniem serwisu.
+     * Constructor with service injection.
      *
-     * @param service serwis obsługujący logikę biznesową
+     * @param service handling business logic
      */
     public SwiftCodeRESTController(SwiftCodeServ service) {
         this.service = service;
@@ -32,10 +32,10 @@ public class SwiftCodeRESTController {
 
     /*
      * Endpoint GET /v1/swift-codes/{swiftCode}
-     * Pobiera szczegóły centrali lub oddziału na podstawie kodu SWIFT.
+     * Retrieves details of a head office or branch based on the SWIFT code.
      *
-     * @param swiftCode kod SWIFT
-     * @return szczegóły w formacie {@link com.MP.Homework.data.SwiftHQ} lub {@link com.MP.Homework.data.SwiftBranchSolo}
+     * @param swiftCode SWIFT code
+     * @return details in format {@link com.MP.Homework.data.SwiftHQ} or {@link com.MP.Homework.data.SwiftBranchSolo}
      */
     @GetMapping("/{swiftCode}")
     public ResponseEntity<?> getSwiftDetails(@PathVariable String swiftCode) {
@@ -51,10 +51,10 @@ public class SwiftCodeRESTController {
 
     /*
      * Endpoint GET /v1/swift-codes/country/{countryISO2}
-     * Pobiera wszystkie banki danego kraju według kodu ISO2.
+     * Retrieves all banks in a given country based on ISO2 code.
      *
-     * @param countryISO2 dwuliterowy kod kraju
-     * @return dane w formacie {@link com.MP.Homework.data.SwiftCountry}
+     * @param countryISO2 two-letter country code
+     * @return data in format {@link com.MP.Homework.data.SwiftCountry}
      */
     @GetMapping("/country/{countryISO2}")
     public ResponseEntity<?> getISODetails(@PathVariable String countryISO2){
@@ -70,10 +70,10 @@ public class SwiftCodeRESTController {
 
     /*
      * Endpoint POST /v1/swift-codes
-     * Dodaje nowy kod SWIFT do bazy danych.
+     * Adds a new SWIFT code to the database.
      *
-     * @param create dane wejściowe walidowane adnotacjami {@link jakarta.validation.Valid}
-     * @return komunikat o powodzeniu
+     * @param create input data validated with {@link jakarta.validation.Valid} annotations
+     * @return success message
      */
     @PostMapping
     public ResponseEntity<?> addSwift(@RequestBody @Valid SwiftCreate create){
@@ -90,10 +90,10 @@ public class SwiftCodeRESTController {
 
     /*
      * Endpoint DELETE /v1/swift-codes/{swiftCode}
-     * Usuwa kod SWIFT z bazy danych.
+     * Deletes a SWIFT code from the database.
      *
-     * @param swiftCode kod do usunięcia
-     * @return komunikat o usunięciu
+     * @param swiftCode code to delete
+     * @return deletion message
      */
     @DeleteMapping("/{swiftCode}")
     public ResponseEntity<?> deleteSwift(@PathVariable String swiftCode){

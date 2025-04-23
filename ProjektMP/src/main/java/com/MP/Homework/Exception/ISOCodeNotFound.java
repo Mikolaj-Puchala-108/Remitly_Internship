@@ -1,16 +1,17 @@
 package com.MP.Homework.Exception;
 
 /*
- * Wyjątek rzucany, gdy nie znaleziono żadnych danych SWIFT powiązanych z podanym kodem ISO2 kraju.
+ * Exception thrown when no SWIFT data is found for the provided country ISO2 code.
  *
- * Jest używany w warstwie serwisu, aby poinformować kontroler o braku danych dla danego kraju.
+ * Used in the service layer to inform the controller about the lack of data for the given country.
  */
 public class ISOCodeNotFound extends RuntimeException {
 
+
     /*
-     * Tworzy nowy wyjątek z podaną wiadomością.
+     * Creates a new exception with the provided message.
      *
-     * @param message komunikat błędu, np. "No SWIFT codes found for country ISO2"
+     * @param message error message, e.g., "No SWIFT codes found for country ISO2"
      */
     public ISOCodeNotFound(String message) {
         super(message);

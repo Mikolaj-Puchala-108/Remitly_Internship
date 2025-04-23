@@ -1,15 +1,15 @@
 package com.MP.Homework.Exception;
 
 /*
- * Wyjątek rzucany, gdy próbuje się dodać kod SWIFT, który już istnieje w bazie danych.
- * Powoduje zwrócenie odpowiedzi HTTP 409 (Conflict).
+ * Exception thrown when trying to add a SWIFT code that already exists in the database.
+ * Triggers an HTTP 409 (Conflict) response.
  */
 public class SwiftCodeAlreadyExists extends RuntimeException {
 
     /*
-     * Konstruktor przyjmujący wiadomość błędu.
+     * Constructor accepting an error message.
      *
-     * @param message opis wyjątku
+     * @param message description of the exception
      */
     public SwiftCodeAlreadyExists(String message) {
         super(message);
