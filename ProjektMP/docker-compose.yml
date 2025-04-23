@@ -1,1 +1,45 @@
-services:  db:    image: mysql:8.4    container_name: mysql-db    restart: always    environment:      MYSQL_ROOT_PASSWORD: root      MYSQL_DATABASE: swift      MYSQL_USER: student      MYSQL_PASSWORD: student    ports:      - "3307:3306"    volumes:      - db_data:/var/lib/mysql      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro  app:    build: .    container_name: projekt-job    depends_on:      - db    ports:      - "8080:8080"    environment:      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/swift?useUnicode=true&characterEncoding=utf8      SPRING_DATASOURCE_USERNAME: student      SPRING_DATASOURCE_PASSWORD: studentvolumes:  db_data:
+
+services:
+  db:
+    image: mysql:8.4
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: swift
+      MYSQL_USER: student
+      MYSQL_PASSWORD: student
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  app:
+    build: .
+    container_name: projekt-job
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/swift?useUnicode=true&characterEncoding=utf8
+      SPRING_DATASOURCE_USERNAME: student
+      SPRING_DATASOURCE_PASSWORD: student
+
+  test-runner:
+    build:
+      context: .
+      target: builder  # <<<<< używamy etapu "builder" z Dockerfile
+    container_name: test-runner
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/swift?useUnicode=true&characterEncoding=utf8
+      SPRING_DATASOURCE_USERNAME: student
+      SPRING_DATASOURCE_PASSWORD: student
+    command: mvn test  # <<<<< co ma się uruchomić
+    tty: true
+
+volumes:
+  db_data:
